@@ -1,0 +1,66 @@
+@import '~materialize-css/dist/css/materialize.min.css';
+
+.map{
+    height: 90vh;
+    width: 60vw;
+    margin-top: 7px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid black;
+}
+
+.timer{
+    position: fixed;
+    width: 20px;
+}
+
+.result{
+    position: fixed;
+    margin-top: 8px;
+    margin-right: 8px;
+}
+
+.wrong-city-label{
+    margin-bottom: 3px;
+    color: #ed2929;
+}
+
+input {
+    color: #fafafa;
+}
+
+ input.grey-input {
+    color:#212121
+}
+
+input.grey-input + label {
+    color:#212121!important;
+}
+
+input.grey-input:focus + label {
+    color: #212121!important;
+}
+
+input.grey-input:focus {
+    border-bottom: 1px solid #212121!important;
+    box-shadow: 0 1px 0 0 #212121!important;
+}
+
+.input-field {
+    margin-top: 0rem;
+}
+
+.mapboxgl-ctrl-bottom-left{
+    display: none;
+}
+
+.mapboxgl-ctrl-bottom-right{
+    display: none;
+}
+
+canvas{
+        /* border: 1px solid black; */
+        /* outline: 1px solid black; */
+        border: none;
+        outline: none;
+}
