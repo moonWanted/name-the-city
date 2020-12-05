@@ -16,7 +16,7 @@ const Main = () => {
     const [totalPopulation, setTotalPopulation] = useState(0);
 
     const getCityData = async (cityName) => {
-        const url = `http://api.geonames.org/searchJSON?q=${cityName}&country=&featureClass=P&continentCode=EU&maxRows=10&username=${GEONAMES_USERNAME}`;
+        const url = `https://secure.geonames.org/searchJSON?q=${cityName}&country=&featureClass=P&continentCode=EU&maxRows=10&username=${GEONAMES_USERNAME}`;
 
         const response = await fetch(url);
 
