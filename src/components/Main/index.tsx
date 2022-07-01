@@ -1,21 +1,23 @@
 import React, { useState } from 'react';
-import TOP_CITIES from '../constants/topCities';
-import Timer from '../components/timer';
-import Results from '../components/results';
-import { Map } from '../components/map';
-import { GEONAMES_USERNAME } from '../config/config';
+import TOP_CITIES from '../../constants/topCities';
+import { GEONAMES_USERNAME } from '../../config/config';
+import Timer from '../Timer';
+import Results from '../Results';
+import { Map } from '../Map';
+
+import { IFeature } from '../types';
 
 const EUROPE_LNG = 51;
 
-const Main = () => {
+const Index = () => {
     const [city, setCity] = useState('');
     const [isWrongCity, setIsWrongCity] = useState(false);
-    const [cityFeatures, setCityFeatures] = useState([]);
-    const [enteredCities, setEnteredCities] = useState([]);
+    const [cityFeatures, setCityFeatures] = useState<IFeature[]>([]);
+    const [enteredCities, setEnteredCities] = useState<string[]>([]);
     const [showResults, setShowResults] = useState(false);
     const [totalPopulation, setTotalPopulation] = useState(0);
 
-    const getCityData = async (cityName) => {
+    const getCityData = async (cityName: string) => {
         const url = `https://secure.geonames.org/searchJSON?q=${cityName}&country=&featureClass=P&continentCode=EU&maxRows=10&username=${GEONAMES_USERNAME}`;
 
         const response = await fetch(url);
@@ -45,7 +47,7 @@ const Main = () => {
         setCityFeatures(newFeatures);
     }
 
-    const changeHandler = event => {
+    const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         setCity(event.target.value);
         setIsWrongCity(false);
     }
@@ -58,14 +60,14 @@ const Main = () => {
         setCity('');
     }
 
-    const enterHandler = (e) => {
-        if (e.key === 'Enter') {
+    const enterHandler = (event: React.KeyboardEvent) => {
+        if (event.key === 'Enter') {
             searchHandler();
         }
     }
 
     const showTopCities = () => {
-        let cities = [];
+        let cities: JSX.Element[] = [];
         TOP_CITIES.forEach(city => {
             if (enteredCities.includes(city.City.toLowerCase())) {
                 cities.push(
@@ -139,4 +141,4 @@ const Main = () => {
     )
 }
 
-export default Main;
+export default Index;

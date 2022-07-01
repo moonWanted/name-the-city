@@ -1,23 +1,24 @@
 import React, { useEffect, useState, useRef } from 'react';
 import mapboxgl from 'mapbox-gl';
-import { MAP_BOX_ACCESS_TOKEN } from '../config/config';
+import { MAP_BOX_ACCESS_TOKEN } from '../../config/config';
+
+import { Map as MapboxMap } from "mapbox-gl";
+import { IFeature } from '../types';
 
 mapboxgl.accessToken = MAP_BOX_ACCESS_TOKEN;
 
-export const Map = ({ cityFeatures }) => {
-
-  const [map, setMap] = useState(null);
+export const Map = ({ cityFeatures }: {cityFeatures: IFeature[]}) => {
+  const [map, setMap] = useState<MapboxMap|null>(null);
   const [isLayer, setIsLayer] = useState(false);
 
-  const divElement = useRef();
+  const divElement = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const map = new mapboxgl.Map({
-      container: divElement.current,
+      container: divElement.current as HTMLDivElement,
       style: 'mapbox://styles/moonw/ckhdx1vsi04s819o2mt63qaxo',
       center: [12, 56.7405],
       zoom: 3.2,
-      //scrollZoom: false,
       interactive: false
     });
 
@@ -53,9 +54,7 @@ export const Map = ({ cityFeatures }) => {
             'circle-stroke-width': 0.5,
           }
         });
-
         setIsLayer(true);
-
       });
 
     }
@@ -69,12 +68,12 @@ export const Map = ({ cityFeatures }) => {
       features: cityFeatures
     }
 
-    isLayer && cityFeatures && map.getSource('random-points-data').setData(data);
+    // @ts-ignore
+    isLayer && cityFeatures && map && map.getSource('random-points-data').setData(data);
   }, [cityFeatures]); // eslint-disable-line react-hooks/exhaustive-deps
 
 
   return (
     <div className="map" ref={divElement} />
   )
-
 }
