@@ -96,6 +96,7 @@ const Index = () => {
                             <input
                                 // placeholder="Enter city"
                                 className="grey-input"
+                                data-testid="name-input"
                                 onChange={changeHandler}
                                 onKeyDown={enterHandler}
                                 onFocus={() => {
