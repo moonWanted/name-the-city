@@ -25,21 +25,8 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Start CI!
-        
-      - name: Install 🔧
-        run: npm install
-        
-      - name: Run Test 🔨
-        run: npm run test
-        
-      - name: Build 👷
-        run: npm run build
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Install, run and build
-          echo are done
+      - name: Cypress run
+          uses: cypress-io/github-action@v2
+          with:
+            build: npm run build
+            start: npm start
