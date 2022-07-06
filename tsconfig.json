@@ -21,6 +21,6 @@
     "jsx": "react-jsx"
   },
   "include": [
-    "name-the-city/src"
+    "./src"
   ]
 }
